@@ -117,4 +117,8 @@ var gulp = require(__dirname + '/Kiwapp_GulpFile/node_modules/gulp'),
 
 For require your module into the node_modules but you can also add a package.json file to your project root 
 
+# BrowserSync usage
+
+We add to this tasks the browsersync plugins for front end developpement. You can access to the browsersync interface to http://localhost:3000 when your gulp serve is running
+
  

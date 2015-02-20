@@ -8,7 +8,7 @@ You can check the Readme for init your project.
 If you want use them into an existing application, use has submodule git why the following command in your application folder: 
 
 ```shell
-$ git submodule add git@github.com:procheo/Kiwapp_GulpFile.git
+$ git submodule add git@github.com:kiwapp/Kiwapp_GulpFile.git
 ```
 
 Important : Copy the file GulpConfig.temp.js (also protractor.temp.js and karma.temp.js for test) into your working directory and config it

@@ -1,5 +1,4 @@
 var gulp   = require('gulp'),
-    connect = require('gulp-connect'),
     gutil = require('gulp-util'),
     config = require('../../GulpConfig');
 

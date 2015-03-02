@@ -99,7 +99,8 @@ You'll have to install selenium inside your protractor folder.
 If you are at the Kiwapp_Gulpfile folder, you can do :
 
 ```shell
-$ cd node_modules/protractor/bin/webdriver-manager update
+$ cd node_modules/protractor/bin
+$ webdriver-manager update
 ```
 
 Now you can check if you protractor folder has the `selenium` folder.

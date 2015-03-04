@@ -3,7 +3,7 @@
   "readmeFilename": "Readme.md",
   "private": true,
   "devDependencies": {
-    "gulp": "~3.8.11",
+    "gulp": "3.8.11",
     "gulp-sass": "0.7.3",
     "gulp-jshint": "1.9.0",
     "gulp-concat": "2.4.1",

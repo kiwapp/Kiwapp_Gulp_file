@@ -8,5 +8,4 @@ src/vendor/
 .idea/
 *.zip
 GulpConfig.js
-GulpConfig.temp.js
 npm-debug.log

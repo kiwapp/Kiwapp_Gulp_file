@@ -16,7 +16,7 @@ var gulp = require('gulp'),
  */
 module.exports = function () {
 
-    if(fs.existsSync(config.project + 'src/scripts/core/core.js')) {
+    if (fs.existsSync(config.project + 'src/scripts/core/core.js')) {
         // Use browserify
         var bundler = browserify({
             entries: [config.project + 'src/scripts/core/core.js'],
@@ -34,14 +34,16 @@ module.exports = function () {
             .pipe(sourcemaps.init({loadMaps: true}))
             .pipe(ngAnnotate())
             // Add transformation tasks to the pipeline here.
-            .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
+            .pipe(gutil.env.type === 'production' ? uglify({
+                mangle: false
+            }) : gutil.noop())
             .pipe(sourcemaps.write('./'))
             .pipe(gulp.dest(config.dist + 'js/'))
-            .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
+            .pipe(gutil.env.opt === 'watch' ? connect.reload({stream: true}) : gutil.noop());
     } else {
         // Just copy sources
         return gulp.src(config.project + 'src/scripts/**/*')
             .pipe(gulp.dest(config.dist + 'js/'))
-            .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
+            .pipe(gutil.env.opt === 'watch' ? connect.reload({stream: true}) : gutil.noop());
     }
 };

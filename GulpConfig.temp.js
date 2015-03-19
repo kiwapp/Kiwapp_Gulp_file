@@ -26,7 +26,7 @@ var project = "../";
  * The application name (in min case)
  * @type {string}
  */
-var appName = "rss";
+var appName = "<%%=applicationName%>";
 
 /**
  * List the project dependecies you want build

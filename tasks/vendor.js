@@ -8,16 +8,21 @@ var gulp = require('gulp'),
  */
 module.exports = function () {
 
+    var wiredep = require('wiredep')({
+        bowerJson: require('../../bower.json'),
+        directory: "../src/vendor",
+    });
+
+
     var stream = streamqueue({objectMode: true});
     stream.queue(
         // The css dependencies
-        gulp.src(config.cssVendors)
+        gulp.src(wiredep.css)
             .pipe(gulp.dest(config.dist + 'styles'))
     );
-
     stream.queue(
         // The js dependencies
-        gulp.src(config.jsVendors)
+        gulp.src(wiredep.js)
             .pipe(concat('vendor.min.js', {newLine: ';\n'}))
             .pipe(gulp.dest(config.dist + 'js'))
     );

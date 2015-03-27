@@ -4,7 +4,6 @@ var gulp = require('gulp'),
     connect = require('browser-sync'),
     gutil = require('gulp-util'),
     notify = require('gulp-notify'),
-    config = require('../../GulpConfig'),
     clip = require('gulp-clip-empty-files');
 
 /**
@@ -21,7 +20,7 @@ module.exports = function () {
             }
         }))
         .pipe(concat('main.css'))
-        .pipe(gulp.dest(config.dist + 'styles/'))
+        .pipe(gulp.dest(config.project + config.dist + 'styles/'))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 
 };

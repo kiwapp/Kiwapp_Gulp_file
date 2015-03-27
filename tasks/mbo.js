@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-    config = require('../../GulpConfig'),
     gutil = require('gulp-util'),
     streamqueue = require('streamqueue');
 

@@ -6,8 +6,7 @@ var path = require("path"),
     tap = require('gulp-tap'),
     connect = require('browser-sync'),
     gutil = require('gulp-util'),
-    streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    streamqueue = require('streamqueue');
 
 /**
  * Build a languages.json from our Yaml files from
@@ -65,6 +64,6 @@ module.exports = function () {
             to: "json"
         }))
         .pipe(concat('languages.json'))
-        .pipe(gulp.dest(config.dist + "i18n/"))
+        .pipe(gulp.dest(config.project + config.dist + "i18n/"))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 };

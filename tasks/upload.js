@@ -1,5 +1,4 @@
 var request = require('request'),
-    config = require('../../GulpConfig'),
     jeditor = require("gulp-json-editor"),
     gutil = require('gulp-util'),
     fs = require('fs');

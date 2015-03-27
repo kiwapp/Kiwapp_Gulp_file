@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     connect = require('browser-sync'),
-    gutil = require('gulp-util'),
-    config = require('../../GulpConfig');
+    gutil = require('gulp-util');
 
 /**
  * Move assets to build folder
@@ -9,7 +8,7 @@ var gulp = require('gulp'),
  * The favicon is copied in build root
  */
 module.exports = function() {
-    return gulp.src([config.project + 'src/assets/**/*'])
-        .pipe(gulp.dest(config.dist + 'assets/'))
+    return gulp.src([config.project + '/src/assets/**/*'])
+        .pipe(gulp.dest(config.project + config.dist + 'assets/'))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 };

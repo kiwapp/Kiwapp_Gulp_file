@@ -1,5 +1,4 @@
 var gulp = require('gulp'),
-    config = require('../../GulpConfig'),
     notify = require('gulp-notify'),
     jshint = require('gulp-jshint'),// linting
     stylish = require('jshint-stylish');// linting

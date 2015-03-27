@@ -41,5 +41,8 @@
     "gulp-protractor": "0.0.12",
     "browser-sync": "2.0.1",
     "wiredep": "~2.2.2"
+  },
+  "dependencies": {
+    "moment": "~2.9.0"
   }
 }

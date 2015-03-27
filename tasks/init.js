@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
     bower = require('bower'),
     prompt = require('gulp-prompt'),
-    replace = require('gulp-replace'),
-    config = require('../../GulpConfig');
+    replace = require('gulp-replace');
 
 /**
  * The command init, will initialize all project variable

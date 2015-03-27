@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
-    del = require('del'),
-    config = require('../../GulpConfig');
+    del = require('del');
 
 module.exports = function (cb){
     del(['../build'], {

@@ -6,7 +6,6 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     ngAnnotate = require('gulp-ng-annotate'),
     sourcemaps = require('gulp-sourcemaps'),
-    config = require('../../GulpConfig'),
     connect = require('browser-sync'),
     notify = require('gulp-notify'),
     gutil = require('gulp-util');
@@ -38,12 +37,12 @@ module.exports = function () {
                 mangle: false
             }) : gutil.noop())
             .pipe(sourcemaps.write('./'))
-            .pipe(gulp.dest(config.dist + 'js/'))
+            .pipe(gulp.dest(config.project + config.dist + 'js/'))
             .pipe(gutil.env.opt === 'watch' ? connect.reload({stream: true}) : gutil.noop());
     } else {
         // Just copy sources
         return gulp.src(config.project + 'src/scripts/**/*')
-            .pipe(gulp.dest(config.dist + 'js/'))
+            .pipe(gulp.dest(config.project + config.dist + 'js/'))
             .pipe(gutil.env.opt === 'watch' ? connect.reload({stream: true}) : gutil.noop());
     }
 };

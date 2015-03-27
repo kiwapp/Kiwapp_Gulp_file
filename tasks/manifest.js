@@ -1,8 +1,7 @@
 var gulp = require('gulp'),
     jeditor = require("gulp-json-editor"),
     gutil = require('gulp-util'),
-    streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    streamqueue = require('streamqueue');
 
 /**
  * Update the manifest for an app
@@ -27,7 +26,7 @@ module.exports = function () {
             return json; // must return JSON object.
         }))
         .pipe(gulp.dest(config.project + "src"))
-        .pipe(gulp.dest(config.dist));
+        .pipe(gulp.dest(config.project + config.dist));
 
     return gulp.src(config.project + 'bower.json')
         .pipe(jeditor(function (json) {

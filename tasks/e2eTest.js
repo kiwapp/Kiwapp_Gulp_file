@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
-    protractor = require('gulp-protractor').protractor,
-    config = require('../../GulpConfig');
+    protractor = require('gulp-protractor').protractor;
 
 module.exports = function (done) {
     if (gutil.env.notest) {

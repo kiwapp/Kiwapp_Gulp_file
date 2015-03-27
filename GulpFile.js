@@ -1,7 +1,10 @@
+
 var gulp = require('gulp'),
     gutil   = require('gulp-util'),
     browserSync = require('browser-sync'),
-    config = require('../GulpConfig');
+    config = require(process.env.PWD+'/package.json');
+global.config = config;
+global.config.project = process.env.PWD + "/";
 
 // Build your vendors
 gulp.task('vendor', require("./tasks/vendor"));
@@ -132,4 +135,7 @@ gulp.task('watch', function () {
 });
 
 // The default task run the prod build
-gulp.task('default', ['prod']);
+//gulp.task('default', ['prod']);
+gulp.task('default', function() {
+
+});

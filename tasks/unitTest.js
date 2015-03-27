@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
-    karma = require('karma').server,
-    config = require('../../GulpConfig');
+    karma = require('karma').server;
 
 module.exports = function (done) {
     if (gutil.env.notest) {

@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
-    streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    streamqueue = require('streamqueue');
+    //config = require('../../GulpConfig');
 
 /**
  * Concat your dependencies (js or css)
@@ -9,8 +9,8 @@ var gulp = require('gulp'),
 module.exports = function () {
 
     var wiredep = require('wiredep')({
-        bowerJson: require('../../bower.json'),
-        directory: "../src/vendor",
+        bowerJson: require(config.project + 'bower.json'),
+        directory: config.project + "/src/vendor",
     });
 
 

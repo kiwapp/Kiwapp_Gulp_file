@@ -1,7 +1,6 @@
 var gulp = require('gulp'),
     chug = require('gulp-chug'),
-    streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    streamqueue = require('streamqueue');
 
 /**
  * Move the microbackoffice setup into the build file

@@ -9,6 +9,8 @@ global.config.project = process.env.PWD + "/";
 // Build your vendors
 gulp.task('vendor', require("./tasks/vendor"));
 
+gulp.task('task', require("./tasks/task"));
+
 // Concatenate your partials and append them to template.html
 gulp.task('templates', require('./tasks/templates'));
 
@@ -58,6 +60,9 @@ gulp.task('e2eTest', ['serve'], require('./tasks/e2eTest'));
 // Run the e2e test on the JS sources
 gulp.task('unitTest', require('./tasks/unitTest'));
 
+// prompt for the version number
+gulp.task('version', require('./tasks/version'));
+
 // Run all you special tasks
 gulp.task('customTask', function () {
     if (config.customTasks) {
@@ -81,9 +86,13 @@ gulp.task('envWatch', function () {
  * Main TASKS
  */
 // PRODUCTION Build, mbo + zip + build
-gulp.task('prod', ['envProd', 'mbo', 'screenshots', 'dev', 'manifest'], function () {
+gulp.task('prod', ['envProd', "version", 'mbo', 'screenshots', 'dev', 'manifest'], function () {
     gulp.start('zip');
 });
+
+gulp.task("createVersion",[]) {
+    
+}
 
 //Launch the e2e and unit test
 gulp.task('test', ['e2eTest', 'unitTest'], function () {

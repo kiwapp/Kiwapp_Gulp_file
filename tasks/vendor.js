@@ -18,13 +18,15 @@ module.exports = function () {
     stream.queue(
         // The css dependencies
         gulp.src(wiredep.css)
-            .pipe(gulp.dest(config.dist + 'styles'))
+            .pipe(gulp.dest(config.project + config.dist + 'styles'))
     );
+    console.log(config.dist);
     stream.queue(
         // The js dependencies
+
         gulp.src(wiredep.js)
             .pipe(concat('vendor.min.js', {newLine: ';\n'}))
-            .pipe(gulp.dest(config.dist + 'js'))
+            .pipe(gulp.dest(config.project + config.dist + 'js'))
     );
 
     return stream.done();

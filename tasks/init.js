@@ -50,7 +50,7 @@ module.exports = function () {
                     ])
                     .pipe(replace('<%%=displayName%>', res.displayName))
                     .pipe(replace('<%%=applicationName%>', camelCase(res.displayName)))
-                    .pipe(replace('<%%=displayName%>', res.desciption))
+                    .pipe(replace('<%%=description%>', res.desciption))
                     .pipe(gulp.dest(config.project));
             }
         ));

@@ -55,6 +55,9 @@ gulp.task('e2eTest', ['serve'], require('./tasks/e2eTest'));
 // Run the e2e test on the JS sources
 gulp.task('unitTest', require('./tasks/unitTest'));
 
+// Run the e2e test on the JS sources
+gulp.task('commit', require('./tasks/commit'));
+
 // Run all you special tasks
 gulp.task('customTask', function () {
     if (config.customTasks) {

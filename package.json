@@ -41,6 +41,14 @@
     "gulp-protractor": "0.0.12",
     "browser-sync": "2.0.1",
     "wiredep": "~2.2.2",
-    "gulp-git": "~1.1.0"
+    "gulp-git": "~1.1.0",
+    "gitignore-parser": "0.0.2",
+    "gulp-ignore": "~1.2.1",
+    "gulp-filter": "~2.0.2",
+    "ignored": "~2.0.2",
+    "nodegit": "~0.3.3",
+    "promisify-node": "~0.1.5",
+    "fs-extra": "~0.18.0",
+    "gulp-rm": "~1.0.0"
   }
 }

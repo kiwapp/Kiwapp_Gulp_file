@@ -81,10 +81,14 @@ gulp.task('envWatch', function () {
  * Main TASKS
  */
 // PRODUCTION Build, mbo + zip + build
-gulp.task('prod', ['envProd', 'mbo', 'screenshots', 'dev', 'manifest'], function () {
+gulp.task('build', ['mbo', 'screenshots', 'dev', 'manifest'], function () {
     gulp.start('zip');
 });
 
+
+gulp.task("prod", ['envProd', "build"], function() {
+    gulp.start("commit")
+})
 //Launch the e2e and unit test
 gulp.task('test', ['e2eTest', 'unitTest'], function () {
     process.exit();

@@ -18,11 +18,21 @@ module.exports = function () {
 
             // Get the vesion number
             // The version can be found in the command line (gulp prod --version 1.0.1) or we use the version in the manifest
-            if (gutil.env.version) {
-                json.app_info.codename = gutil.env.version;
-            } else {
-                gutil.env.version = json.app_info.codename;
+            //Here come the mess
+            // Version = The release witch is being prepared
+            // Codename = What we use for the zip and for the manager;
+            // BuildID = The build Number 
+            if (gutil.env.version) { // Si on specifie 
+                json.app_info.version = gutil.env.version;
             }
+            gutil.env.version = json.app_info.version;
+            if (gutil.env.type === "production") {
+                json.app_info.codename = gutil.env.codename = gutil.env.version
+            } else {
+                var buildID = json.app_info.build_version = (json.app_info.build_version || 0) + 1 ;
+                json.app_info.codename = gutil.env.codename = gutil.env.version +"-"+ buildID;
+            }
+            
 
             return json; // must return JSON object.
         }))

@@ -1,9 +1,8 @@
 var gulp = require('gulp'),
-    del = require('del'),
+    rm = require('gulp-rm'),
     config = require('../../GulpConfig');
 
 module.exports = function (cb){
-    del(['../build'], {
-        force: true
-    }, cb);
+    return gulp.src("../build/**/*")
+    	.pipe(rm());
 };

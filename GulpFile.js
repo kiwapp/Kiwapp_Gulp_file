@@ -80,12 +80,11 @@ gulp.task('envWatch', function () {
 /*******
  * Main TASKS
  */
-// PRODUCTION Build, mbo + zip + build
+// normal QA Build
 gulp.task('build', ['mbo', 'screenshots', 'dev', 'manifest'], function () {
     gulp.start('zip');
 });
-
-
+//Production Build (normal build + git)
 gulp.task("prod", ['envProd', "build"], function() {
     gulp.start("commit")
 })

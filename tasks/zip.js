@@ -18,7 +18,7 @@ module.exports = function (cb) {
     // You can find this variable in the task manifest
     var zipname = gutil.env.name + '-' + gutil.env.codename + '.zip';
     gutil.env.zipname = zipname;
-    var a = gulp.src( config.project+gutil.env.name+"*.zip")
+    var a = gulp.src( config.project+gutil.env.name+"*-+([0123456789]).zip")
         .pipe(rm())
 
     a.on("end",function() {

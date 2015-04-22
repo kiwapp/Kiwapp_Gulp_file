@@ -55,6 +55,9 @@ gulp.task('e2eTest', ['serve'], require('./tasks/e2eTest'));
 // Run the e2e test on the JS sources
 gulp.task('unitTest', require('./tasks/unitTest'));
 
+// Run the e2e test on the JS sources
+gulp.task('commit', require('./tasks/commit'));
+
 // Run all you special tasks
 gulp.task('customTask', function () {
     if (config.customTasks) {
@@ -77,11 +80,14 @@ gulp.task('envWatch', function () {
 /*******
  * Main TASKS
  */
-// PRODUCTION Build, mbo + zip + build
-gulp.task('prod', ['envProd', 'mbo', 'screenshots', 'dev', 'manifest'], function () {
+// normal QA Build
+gulp.task('build', ['mbo', 'screenshots', 'dev', 'manifest'], function () {
     gulp.start('zip');
 });
-
+//Production Build (normal build + git)
+gulp.task("prod", ['envProd', "build"], function() {
+    gulp.start("commit")
+})
 //Launch the e2e and unit test
 gulp.task('test', ['e2eTest', 'unitTest'], function () {
     process.exit();

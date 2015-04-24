@@ -7,7 +7,8 @@ var path = require("path"),
     connect = require('browser-sync'),
     gutil = require('gulp-util'),
     streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    config = require('../../GulpConfig'),
+    jeditor = require("gulp-json-editor");
 
 /**
  * Build a languages.json from our Yaml files from
@@ -55,8 +56,9 @@ module.exports = function () {
 
                 }))
         );
-    }
-    ;
+    };
+
+
 
     return stream.done()
         .pipe(concat('languages.yml'))
@@ -66,5 +68,7 @@ module.exports = function () {
         }))
         .pipe(concat('languages.json'))
         .pipe(gulp.dest(config.dist + "i18n/"))
+        .pipe( jeditor(gutil.env.template ? 
+            JSON.parse(fs.readFileSync(gutil.env.template + "i18n/languages.json")) : {}))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 };

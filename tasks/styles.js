@@ -12,13 +12,21 @@ var gulp = require('gulp'),
  */
 module.exports = function () {
 
-    return gulp.src(config.project + 'src/styles/*.*css')
+    var files = [
+        config.project + 'src/styles/*.*css'
+    ];
+    if (gutil.env.template) {
+        //files.push(gutil.env.template+"/styles/*.*css");
+    }
+
+    return gulp.src(files)
         .pipe(clip())
         .pipe(sass({
             errLogToConsole: false,
             onError: function (err) {
                 notify().write(err);
-            }
+            },
+            includePaths: gutil.env.template ? [gutil.env.template+"/styles/"] : null
         }))
         .pipe(concat('main.css'))
         .pipe(gulp.dest(config.dist + 'styles/'))

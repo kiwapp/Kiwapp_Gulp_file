@@ -59,6 +59,30 @@ module.exports = function () {
     };
 
 
+    function rewriteI18n(source) {
+        if (!gutil.env.template) {
+            return source;
+        }
+        var json;
+        try {
+            json = JSON.parse(fs.readFileSync(gutil.env.template + "i18n/languages.json")) || {};
+        } catch (err) {
+            json = {};
+        }
+        function recursiveChange(source,info) {
+            for(var key in info) {
+                if (typeof source[key] === "object" && typeof info[key] === "object") {
+                    source[key] = recursiveChange(source[key], info[key]);
+                } else {
+                    source[key] = info[key];
+                }
+            }
+            return source;
+        } 
+        return recursiveChange(source,json);
+    }
+
+
 
     return stream.done()
         .pipe(concat('languages.yml'))
@@ -67,8 +91,7 @@ module.exports = function () {
             to: "json"
         }))
         .pipe(concat('languages.json'))
+        .pipe( jeditor(rewriteI18n))
         .pipe(gulp.dest(config.dist + "i18n/"))
-        .pipe( jeditor(gutil.env.template ? 
-            JSON.parse(fs.readFileSync(gutil.env.template + "i18n/languages.json")) : {}))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 };

@@ -9,7 +9,13 @@ var gulp = require('gulp'),
 var parser = require('gitignore-parser'),
     fs = require('fs');
 
-var gitignore = parser.compile(fs.readFileSync(__dirname+'/../../.gitignore', 'utf8'));
+try {
+    var gitignore = parser.compile(fs.readFileSync(__dirname+'/../../.gitignore', 'utf8'));
+} catch (err) {
+     var gitignore = parser.compile("");
+}
+
+
 
 module.exports = function(cb) {
     if (gutil.env.git===false) {

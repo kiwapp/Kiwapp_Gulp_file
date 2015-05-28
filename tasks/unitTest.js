@@ -1,4 +1,5 @@
 var gulp = require('gulp'),
+    fs = require('fs'),
     gutil = require('gulp-util'),
     karma = require('karma').server,
     wiredep = require('wiredep'),
@@ -8,6 +9,9 @@ var gulp = require('gulp'),
 module.exports = function (done) {
     if (gutil.env.notest) {
         gutil.log(gutil.colors.yellow('Warning : Tests karma are skipped'));
+        return;
+    } else if(!fs.existsSync(__dirname + '/' + config.project + '../karma.conf.js')) {
+        gutil.log(gutil.colors.yellow('Warning : No karma.config.js found, tests are skipped'));
         return;
     }
 

@@ -1,6 +1,6 @@
 Kiwapp_GulpFile
 ===============
-Process gulp for a classic Kiwapp application (angular, sass, zip and deploy).
+Process gulp for a classic Kiwapp application (angular, sass and autoprefixer, zip and deploy).
 
 The project [boilerplateAngularJS](www.github.com) embed this process.
 You can check the Readme for init your project.

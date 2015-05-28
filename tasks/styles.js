@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     notify = require('gulp-notify'),
     config = require('../../GulpConfig'),
+    autoprefixer = require('gulp-autoprefixer'),
     clip = require('gulp-clip-empty-files');
 
 /**
@@ -20,6 +21,7 @@ module.exports = function () {
                 notify().write(err);
             }
         }))
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
         .pipe(concat('main.css'))
         .pipe(gulp.dest(config.dist + 'styles/'))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());

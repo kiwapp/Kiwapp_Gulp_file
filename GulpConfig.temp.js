@@ -31,6 +31,13 @@ var test = "../test/";
 var project = "../";
 
 /**
+ * Available var : babelfish or angular-translate
+ * (choose to use angular-translate)
+ * @type {string}
+ */
+var translator = 'angular-translate';
+
+/**
  * The application name (in min case)
  * @type {string}
  */
@@ -82,6 +89,7 @@ module.exports = {
     dist: dist,
     test: test,
     project: project,
+    translator: translator,
     projectsDependencies: projectsDependencies,
     appName: appName,
     customTasks: customTasks,

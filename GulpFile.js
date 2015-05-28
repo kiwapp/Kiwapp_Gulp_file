@@ -4,7 +4,7 @@ var gulp = require('gulp'),
     config = require('../GulpConfig');
 
 // Build your vendors
-gulp.task('vendor', require("./tasks/vendor"));
+gulp.task('vendor', require('./tasks/vendor'));
 
 // Concatenate your partials and append them to template.html
 gulp.task('templates', require('./tasks/templates'));
@@ -19,7 +19,7 @@ gulp.task('lint', require('./tasks/lint'));
 gulp.task('scripts', ['lint'], require('./tasks/scripts'));
 
 // Move index
-gulp.task('index', require("./tasks/index"));
+gulp.task('index', require('./tasks/index'));
 
 // Move our assets
 gulp.task('assets', require('./tasks/assets'));
@@ -50,12 +50,6 @@ gulp.task('init', require('./tasks/init'));
 gulp.task('upload', require('./tasks/upload'));
 
 // Run the e2e test on the JS sources
-gulp.task('e2eTest', ['serve'], require('./tasks/e2eTest'));
-
-// Run the e2e test on the JS sources
-gulp.task('unitTest', require('./tasks/unitTest'));
-
-// Run the e2e test on the JS sources
 gulp.task('commit', require('./tasks/commit'));
 
 // Run all you special tasks
@@ -74,7 +68,7 @@ gulp.task('envProd', function () {
 
 // Set the env config to production
 gulp.task('envWatch', function () {
-    gutil.env.opt = "watch";
+    gutil.env.opt = 'watch';
 });
 
 /*******
@@ -85,13 +79,12 @@ gulp.task('build', ['mbo', 'screenshots', 'dev', 'manifest'], function () {
     gulp.start('zip');
 });
 //Production Build (normal build + git)
-gulp.task("prod", ['envProd', "build"], function() {
-    gulp.start("commit")
-})
-//Launch the e2e and unit test
-gulp.task('test', ['e2eTest', 'unitTest'], function () {
-    process.exit();
+gulp.task('prod', ['envProd', 'build'], function() {
+    gulp.start('commit');
 });
+
+//Launch the e2e and unit test
+gulp.task('test', require('./tasks/unitTest'));
 
 // Create a zip and upload the application on the manager
 gulp.task('deploy', ['prod'], function () {
@@ -102,7 +95,9 @@ gulp.task('deploy', ['prod'], function () {
 gulp.task('dependencies', require('./tasks/dependencies'));
 
 // Dev build
-gulp.task('dev', ['customTask', 'index', 'assets', 'vendor', 'templates', 'i18n', 'styles', 'scripts']);
+gulp.task('dev', ['customTask', 'index', 'assets', 'vendor', 'templates', 'i18n', 'styles', 'scripts'], function() {
+    gulp.start('test');
+});
 
 // Dev build + add the watch and the livereload on the sources
 gulp.task('serve', ['watch', 'dev'], function () {
@@ -131,6 +126,7 @@ gulp.task('cserve', ['clean'], function () {
 gulp.task('watch', function () {
     gulp.watch(config.project + 'src/styles/**/*', ['envWatch', 'styles']);
     gulp.watch(config.project + 'src/scripts/**/*.js', ['envWatch', 'scripts']);
+    gulp.watch(config.project + 'test/**/*.js', ['test']);
     gulp.watch(config.project + 'src/assets/**/*', ['envWatch', 'assets']);
     gulp.watch(config.project + 'src/scripts/**/*.html', ['envWatch', 'templates']);
     gulp.watch(config.project + 'src/index.html', ['envWatch', 'index']);

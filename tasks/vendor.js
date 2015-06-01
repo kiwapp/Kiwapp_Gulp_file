@@ -1,31 +1,34 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    config = require('../../GulpConfig'),
+    wiredep = require('wiredep');
 
 /**
  * Concat your dependencies (js or css)
  */
 module.exports = function () {
 
-    var wiredep = require('wiredep')({
+    var wiredepElements = wiredep({
         bowerJson: require('../../bower.json'),
         directory: "../src/vendor",
+        devDependencies: false,
+        dependencies: true
     });
 
 
     var stream = streamqueue({objectMode: true});
-    if (wiredep.css && wiredep.css.length) {
+    if (wiredepElements.css && wiredepElements.css.length) {
         stream.queue(
             // The css dependencies
-            gulp.src(wiredep.css)
+            gulp.src(wiredepElements.css)
                 .pipe(gulp.dest(config.dist + 'styles'))
         );
     }
-    if (wiredep.js && wiredep.js.length) {
+    if (wiredepElements.js && wiredepElements.js.length) {
         stream.queue(
             // The js dependencies
-            gulp.src(wiredep.js)
+            gulp.src(wiredepElements.js)
                 .pipe(concat('vendor.min.js', {newLine: ';\n'}))
                 .pipe(gulp.dest(config.dist + 'js'))
         );

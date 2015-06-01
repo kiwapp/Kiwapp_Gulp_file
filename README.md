@@ -1,6 +1,6 @@
 Kiwapp_GulpFile
 ===============
-Process gulp for a classic Kiwapp application (angular, sass, zip and deploy).
+Process gulp for a classic Kiwapp application (angular, sass and autoprefixer, zip and deploy).
 
 The project [boilerplateAngularJS](www.github.com) embed this process.
 You can check the Readme for init your project.
@@ -11,7 +11,7 @@ If you want use them into an existing application, use has submodule git why the
 $ git submodule add git@github.com:kiwapp/Kiwapp_GulpFile.git
 ```
 
-Important : Copy the file GulpConfig.temp.js (also protractor.temp.js and karma.temp.js for test) into your working directory and config it
+Important : Copy the file GulpConfig.temp.js (also karma.temp.js for test) into your working directory and config it
 
 For install all dev dependencies (npm):
  
@@ -65,7 +65,7 @@ $ npm install && gulp init
         
     Your application will be available at the http://localhost:8080/build
     
-- Launch the unit test and the e2e test
+- Launch the unit test
      
     ```shell
     $ gulp test
@@ -82,28 +82,6 @@ $ npm install && gulp init
     Your application will be deployed on the Kiwapp manager
     The configuration for the deployment is in the GulpConfig file
     
-
-## Install Protractor and Karma
-
-### Protractor
-
-Use npm to install Protractor globally.
-
-```shell
-$ npm install -g protractor
-```
- 
-Try running `$ protractor --version` to make sure it's working.
-
-You'll have to install selenium inside your protractor folder.
-If you are at the Kiwapp_Gulpfile folder, you can do :
-
-```shell
-$ cd node_modules/protractor/bin
-$ webdriver-manager update
-```
-
-Now you can check if you protractor folder has the `selenium` folder.
 
 ## Custom Task
 

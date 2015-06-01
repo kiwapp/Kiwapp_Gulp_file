@@ -3,6 +3,7 @@
  * @type {string}
  */
 var urlApi = "https://api.kiwapp.com/nosecure/appInstance/";
+
 /**
  * The application token for this application
  * You must have manuaaly uploaded on the Manager once
@@ -10,6 +11,7 @@ var urlApi = "https://api.kiwapp.com/nosecure/appInstance/";
  * @type {string}
  */
 var appToken = "123456";
+
 /**
  * The destination folder you want yours built resources have been
  * @type {string}
@@ -17,10 +19,23 @@ var appToken = "123456";
 var dist = "../build/";
 
 /**
+ * The folder with your test
+* @type {string}
+*/
+var test = "../test/";
+
+/**
  * The project sources folders
  * @type {string}
  */
 var project = "../";
+
+/**
+ * Available var : babelfish or angular-translate
+ * (choose to use angular-translate)
+ * @type {string}
+ */
+var translator = 'angular-translate';
 
 /**
  * The application name (in min case)
@@ -72,7 +87,9 @@ module.exports = {
     urlApi: urlApi,
     appToken: appToken,
     dist: dist,
+    test: test,
     project: project,
+    translator: translator,
     projectsDependencies: projectsDependencies,
     appName: appName,
     customTasks: customTasks,

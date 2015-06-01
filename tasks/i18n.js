@@ -21,6 +21,18 @@ var path = require("path"),
  */
 module.exports = function () {
 
+    if(gutil.translator === 'angular-translate') {
+        // Build file for angular Translate
+        return gulp.src(config.project + 'src/i18n/*.yml')
+            .pipe(convert({
+                from: 'yml',
+                to: 'json'
+            }))
+            .pipe(gulp.dest(config.dist + 'i18n/'))
+            .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
+    }
+
+
     /**
      * List each directory inside i18n directory
      * From {@link https://github.com/gulpjs/gulp/blob/master/docs/recipes/running-task-steps-per-folder.md}

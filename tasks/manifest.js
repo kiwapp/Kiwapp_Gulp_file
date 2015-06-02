@@ -24,15 +24,18 @@ module.exports = function () {
             // BuildID = The build Number 
             if (gutil.env.version) { // Si on specifie 
                 json.app_info.version = gutil.env.version;
+            } else if (json.app_info.version) {
+                gutil.env.version = json.app_info.version
+            } else {
+                gutil.env.version  = json.app_info.version = "0.0.1";
             }
-            gutil.env.version = json.app_info.version;
+
             if (gutil.env.type === "production") {
                 json.app_info.codename = gutil.env.codename = gutil.env.version
             } else {
                 var buildID = json.app_info.build_version = (json.app_info.build_version || 0) + 1 ;
                 json.app_info.codename = gutil.env.codename = gutil.env.version +"-"+ buildID;
             }
-            
 
             return json; // must return JSON object.
         }))

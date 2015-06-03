@@ -134,4 +134,4 @@ gulp.task('watch', function () {
 });
 
 // The default task run the prod build
-gulp.task('default', ['prod']);
+gulp.task('default', ['build']);

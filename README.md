@@ -24,10 +24,10 @@ $ npm install && gulp init
 ## List available gulp commands :
 
  
- - Launch production build with the version specified in the manifest.json (this command line will build a .zip file with the resource under the build folder)
+ - Launch qa build with the version specified in the manifest.json (this command line will build a .zip file with the resource under the build folder)
  
     ```shell
-    $ gulp prod
+    $ gulp build
     ```
 
     or
@@ -36,18 +36,25 @@ $ npm install && gulp init
     $ gulp
     ```
     
-- Launch production build with a version number (this command line will build a .zip file with the resource under the build folder)
+ - Launch a production build, commit, tag it and build 
+ 
+    ```shell
+    $ gulp prod
+    ```
+    
+
+- Launch a build with a version number (this command line will build a .zip file with the resource under the build folder)
  
     ```shell
     $ gulp prod --version 1.0.1
     ```
 
+or
 
-- Launch the dev build
-
-    ```shell
-    $ gulp dev
+     ```shell
+    $ gulp build --version 1.0.1
     ```
+
     
 - Launch the dev build with the watcher and the livereload on the sources
  
@@ -82,6 +89,18 @@ $ npm install && gulp init
     Your application will be deployed on the Kiwapp manager
     The configuration for the deployment is in the GulpConfig file
     
+## Templates
+If your project use templates (custome content, scss variable, i18n, assets) you may want to use the --template option. The options take a path to the template folder. This folder use the same structure as the src folder.
+
+    ```shell
+    $ gulp serve --template ../templates/myTemplate/
+    ```
+
+    or 
+    ```shell
+    $ gulp prod --template ../templates/myOtherTemplate/
+    ```
+
 
 ## Custom Task
 

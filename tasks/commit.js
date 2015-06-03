@@ -28,7 +28,7 @@ module.exports = function(cb) {
             var pt = path.relative(config.project,n.path);
             return gitignore.accepts(pt) && gitignore.accepts(pt+"/");
         }))
-        .pipe(git.commit("gutil", {cwd:config.project, args:"--allow-empty"}))
+        .pipe(git.commit(gutil.env.version, {cwd:config.project, args:"--allow-empty"}))
         .on("error", function(err) {
             console.log("Error in the commit",err);
         })

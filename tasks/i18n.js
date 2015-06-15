@@ -20,7 +20,8 @@ var path = require("path"),
  */
 module.exports = function () {
 
-    if(gutil.translator === 'angular-translate') {
+    if(config.translator === 'angular-translate') {
+        console.log("Transla    te");
         // Build file for angular Translate
         return gulp.src(config.project + 'src/i18n/*.yml')
             .pipe(convert({

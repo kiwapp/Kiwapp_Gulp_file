@@ -21,7 +21,7 @@ module.exports = function (cb) {
         (gutil.env.template ? "-" + path.basename(gutil.env.template) : "")  +
         (gutil.env.codename ? '-' + gutil.env.codename : "") + 
         '.zip';
-    console.log(zipname, path.basename(gutil.env.template),gutil.env.codename)
+
     gutil.env.zipname = zipname;
     var a = gulp.src( config.project+gutil.env.name+"*-+([0123456789]).zip")
         .pipe(rm())

@@ -41,7 +41,7 @@ var translator = 'angular-translate';
  * The application name (in min case)
  * @type {string}
  */
-var appName = '<%%=applicationName%>';
+var appName = 'toto```';
 
 /**
  * List the project dependecies you want build

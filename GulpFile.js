@@ -27,9 +27,6 @@ gulp.task('assets', require('./tasks/assets'));
 // Build and increment the manifest version
 gulp.task('manifest', require('./tasks/manifest'));
 
-// Move the mbo for this application
-gulp.task('mbo', require('./tasks/mbo'));
-
 // Task all files in the /app folder and zip them
 gulp.task('zip', require('./tasks/zip'));
 
@@ -40,17 +37,7 @@ gulp.task('screenshots', require('./tasks/screenshots'));
 gulp.task('i18n', require('./tasks/i18n'));
 
 // Init task is use when you start the project
-// Clean the dest folder and all this sources
-gulp.task('clean', require('./tasks/clean'));
-
-// Init task is use when you start the project
 gulp.task('init', require('./tasks/init'));
-
-// Upload your zip in the Kiwapp manager (see the api config in your config gulp file)
-gulp.task('upload', require('./tasks/upload'));
-
-// Run the e2e test on the JS sources
-gulp.task('commit', require('./tasks/commit'));
 
 // Run all you special tasks
 gulp.task('customTask', function () {
@@ -75,13 +62,11 @@ gulp.task('envWatch', function () {
  * Main TASKS
  */
 // normal QA Build
-gulp.task('build', ['mbo', 'screenshots', 'dev', 'manifest'], function () {
+gulp.task('build', ['screenshots', 'dev', 'manifest'], function () {
     gulp.start('zip');
 });
 //Production Build (normal build + git)
-gulp.task('prod', ['envProd', 'build'], function() {
-    gulp.start('commit');
-});
+gulp.task('prod', ['envProd', 'build']);
 
 //Launch the e2e and unit test
 gulp.task('test', require('./tasks/unitTest'));
@@ -117,11 +102,6 @@ gulp.task('serve', ['watch', 'dev'], function () {
     })
 });
 
-gulp.task('cserve', ['clean'], function () {
-    // TODO remove when gulp 4.0 is released
-    gulp.start('serve');
-});
-
 // Launch your watch on file
 gulp.task('watch', function () {
     gulp.watch(config.project + 'src/styles/**/*', ['envWatch', 'styles']);
@@ -134,4 +114,4 @@ gulp.task('watch', function () {
 });
 
 // The default task run the prod build
-gulp.task('default', ['prod']);
+gulp.task('default', ['build']);

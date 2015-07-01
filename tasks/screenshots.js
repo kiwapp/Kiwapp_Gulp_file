@@ -6,6 +6,10 @@ var gulp   = require('gulp'),
  * Simply move the index.html file into the build folder
  */
 module.exports = function() {
-    return gulp.src(config.project + 'src/screenshots/**.*')
+	var files = [config.project + 'src/screenshots/**.*'];
+	if (gutil.env.template) {
+        files.push(gutil.env.template+"/screenshots/**/*");
+    }
+    return gulp.src(files)
         .pipe(gulp.dest(config.dist + 'screenshots/'));
 };

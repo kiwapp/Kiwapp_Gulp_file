@@ -7,7 +7,8 @@ var path = require("path"),
     connect = require('browser-sync'),
     gutil = require('gulp-util'),
     streamqueue = require('streamqueue'),
-    config = require('../../GulpConfig');
+    config = require('../../GulpConfig'),
+    jeditor = require("gulp-json-editor");
 
 /**
  * Build a languages.json from our Yaml files from
@@ -21,13 +22,13 @@ var path = require("path"),
 module.exports = function () {
 
     if(config.translator === 'angular-translate') {
-        console.log("Transla    te");
         // Build file for angular Translate
         return gulp.src(config.project + 'src/i18n/*.yml')
             .pipe(convert({
                 from: 'yml',
                 to: 'json'
             }))
+            .pipe( jeditor(rewriteI18n))
             .pipe(gulp.dest(config.dist + 'i18n/'))
             .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
     }
@@ -68,8 +69,31 @@ module.exports = function () {
 
                 }))
         );
+    };
+
+
+    function rewriteI18n(source) {
+        if (!gutil.env.template) {
+            return source;
+        }
+        var json;
+        try {
+            json = JSON.parse(fs.readFileSync(gutil.env.template + "i18n/languages.json")) || {};
+        } catch (err) {
+            json = {};
+        }
+        function recursiveChange(source,info) {
+            for(var key in info) {
+                if (typeof source[key] === "object" && typeof info[key] === "object") {
+                    source[key] = recursiveChange(source[key], info[key]);
+                } else {
+                    source[key] = info[key];
+                }
+            }
+            return source;
+        } 
+        return recursiveChange(source,json);
     }
-    ;
 
     return stream.done()
         .pipe(concat('languages.yml'))
@@ -78,6 +102,7 @@ module.exports = function () {
             to: "json"
         }))
         .pipe(concat('languages.json'))
+        .pipe( jeditor(rewriteI18n))
         .pipe(gulp.dest(config.dist + "i18n/"))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 };

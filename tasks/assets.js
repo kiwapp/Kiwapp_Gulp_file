@@ -9,7 +9,11 @@ var gulp = require('gulp'),
  * The favicon is copied in build root
  */
 module.exports = function() {
-    return gulp.src([config.project + 'src/assets/**/*'])
+	var files = [config.project + 'src/assets/**/*'];
+	if (gutil.env.template) {
+        files.push(gutil.env.template+"/assets/**/*");
+    }
+    return gulp.src(files)
         .pipe(gulp.dest(config.dist + 'assets/'))
         .pipe(gutil.env.opt === 'watch' ? connect.reload({stream:true}) : gutil.noop());
 };

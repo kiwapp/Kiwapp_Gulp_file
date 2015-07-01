@@ -2,7 +2,8 @@ var gulp = require('gulp'),
     zip = require('gulp-zip'),
     gutil = require('gulp-util'),
     rm = require('gulp-rm'),
-    config = require('../../GulpConfig');
+    config = require('../../GulpConfig'),
+    path = require("path");
 
 /**
  * Build a zip file with all the content in the folder build
@@ -16,10 +17,14 @@ module.exports = function (cb) {
     }
     // We take the name of the application (this name is saved in the env configuration run command.
     // You can find this variable in the task manifest
-    var zipname = gutil.env.name + '-' + gutil.env.codename + '.zip';
+    var zipname = gutil.env.name + 
+        (gutil.env.template ? "-" + path.basename(gutil.env.template) : "")  +
+        (gutil.env.codename ? '-' + gutil.env.codename : "") + 
+        '.zip';
+
     gutil.env.zipname = zipname;
     var a = gulp.src( config.project+gutil.env.name+"*-+([0123456789]).zip")
-        .pipe(rm())
+        .pipe(rm());
 
     a.on("end",function() {
         gulp.src(config.dist + '**/*')

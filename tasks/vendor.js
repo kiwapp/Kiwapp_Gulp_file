@@ -22,6 +22,7 @@ module.exports = function () {
         stream.queue(
             // The css dependencies
             gulp.src(wiredepElements.css)
+                .pipe(concat('vendor.css'))
                 .pipe(gulp.dest(config.dist + 'styles'))
         );
     }

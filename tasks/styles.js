@@ -25,6 +25,7 @@ module.exports = function () {
         .pipe(sass({
             errLogToConsole: false,
             onError: function (err) {
+                console.log(err);
                 notify().write(err);
             },
             includePaths: gutil.env.template ? [gutil.env.template+"/styles/"] : null
